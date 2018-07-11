@@ -2,14 +2,16 @@
 #include <stdlib.h>
 
 void printHelloWorld() {
-    printf("hello world.");
+    printf("hello world.\n\n");
 }
 
 int *add(int *a, int *b) {
-    int c = (*a) + (*b);
-    return &c;           // after execution in main, add() gets deallocated.
-                          // reason-- in stack add() stays at top so it gets deallocated.
-                          // can't return &c.
+
+    // allocating memory from heap. prob solved.
+    int *c = (int*)malloc(sizeof(int));
+    *c = (*a) + (*b);
+    return c;           // &c doesn't work.
+
 }
 
 int main() {
